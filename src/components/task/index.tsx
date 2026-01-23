@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 // Service
-import { createTask } from "../../services/taskService";
+import { createTask } from "../../services/task.service";
 
 type Inputs = {
   task: string;
@@ -22,7 +22,7 @@ export default function TaskForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     resetField,
   } = useForm({
     resolver: yupResolver(schema),

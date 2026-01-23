@@ -12,7 +12,7 @@ import { useTaskStore } from "../../store/task";
 import {
   updateTask as updateTaskService,
   removeTask as removeTaskService,
-} from "../../services/taskService";
+} from "../../services/task.service";
 import Counter from "../../components/task/counter";
 
 export default function Items() {

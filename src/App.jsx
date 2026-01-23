@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import TaskForm from "./components/task";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -7,13 +6,24 @@ import Grid from "@mui/material/Grid";
 import Items from "./components/task/items";
 import Typography from "@mui/material/Typography";
 import { useNetwork } from "./hooks/useNetwork";
-import { listTasks } from "./services/taskService";
+import { listTasks } from "./services/task.service";
+import {
+  startSyncScheduler,
+  stopSyncScheduler,
+} from "./services/syncScheduler";
+import { Footer } from "./components/footer";
 
 function App() {
   const isOnline = useNetwork();
 
   useEffect(() => {
     listTasks();
+
+    startSyncScheduler();
+
+    return () => {
+      stopSyncScheduler();
+    };
   }, []);
 
   return (
@@ -29,6 +39,8 @@ function App() {
             <Items />
           </CardContent>
         </Card>
+
+        <Footer />
       </Grid>
       <Grid size={{ md: 4 }} />
     </Grid>

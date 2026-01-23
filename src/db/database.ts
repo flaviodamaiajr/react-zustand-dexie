@@ -2,11 +2,12 @@ import Dexie, { Table } from "dexie";
 
 export interface TaskRecord {
   id: string; // UUID local
+  serverId: number | null,
   text: string;
   wasSync: 0 | 1;
-  createdAt: number;
+  createdAt: string;
   isDeleted: 0 | 1;
-  deletedAt: number | null;
+  deletedAt: string | null;
 }
 
 export class TaskDatabase extends Dexie {

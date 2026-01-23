@@ -1,9 +1,27 @@
-import Typography from "@mui/material/Typography";
+import { Box, Typography, Link } from "@mui/material";
 
-export default function Footer() {
+export function Footer() {
   return (
-    <Typography variant="body1" gutterBottom>
-      Created by Flávio 🤓
-    </Typography>
+    <Box
+      component="footer"
+      sx={{
+        py: 2,
+        textAlign: "center",
+        borderTop: "1px solid",
+        borderColor: "divider",
+      }}
+    >
+      <Typography variant="body2" color="text.secondary">
+        👨🏻‍💻 2026 — Created by{" "}
+        <Link
+          href="https://github.com/flaviodamaiajr"
+          target="_blank"
+          rel="noopener"
+        >
+          @flaviodamaiajr
+        </Link>{" "}
+        ✌🏻
+      </Typography>
+    </Box>
   );
 }

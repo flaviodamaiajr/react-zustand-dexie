@@ -4,12 +4,17 @@ import TaskForm from "./components/task";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
-import Items from "./components/task/item";
+import Items from "./components/task/items";
 import Typography from "@mui/material/Typography";
 import { useNetwork } from "./hooks/useNetwork";
+import { listTasks } from "./services/taskService";
 
 function App() {
   const isOnline = useNetwork();
+
+  useEffect(() => {
+    listTasks();
+  }, []);
 
   return (
     <Grid container spacing={2}>

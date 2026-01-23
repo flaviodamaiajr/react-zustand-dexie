@@ -1,37 +1,33 @@
 import { create } from "zustand";
 
 type Task = {
-  id: string | number;
+  id: string;
   text: string;
-  wasSync: boolean;
+  wasSync: 0 | 1;
+  isDeleted: 0 | 1
 };
 
 type TaskStore = {
   tasks: Task[];
-  addTask: (text: string) => void;
-  removeTask: (id: number | string) => void;
-  editTask: (id: number | string, text: string) => void;
+  addTask: (task: Task) => void;
+  removeTask: (id: string) => void;
+  editTask: (id: string, changes: Partial<Task>) => void;
+  hydrate: (tasks: Task[]) => void;
 };
 
 export const useTaskStore = create<TaskStore>((set) => ({
   tasks: [],
-  addTask: (text) =>
+  addTask: (task) =>
     set((state) => ({
-      tasks: [...state.tasks, { id: Date.now(), text: text, wasSync: false }],
+      tasks: [...state.tasks, task],
     })),
   removeTask: (id) =>
     set((state) => ({
       tasks: state.tasks.filter((t) => t.id !== id),
     })),
-  editTask: (id, text) =>
-    set((state) => {
-      const index = state.tasks.findIndex((t) => t.id === id);
-
-      if (index === -1) return state;
-
-      const tasks = [...state.tasks];
-      tasks[index] = { ...tasks[index], text };
-
-      return { tasks };
-    }),
+  editTask: (id, changes) =>
+    set((state) => ({
+      tasks: state.tasks.map((t) => (t.id === id ? { ...t, ...changes } : t)),
+    })),
+  hydrate: (tasks) => set({ tasks }),
 }));

@@ -1,11 +1,12 @@
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
-// Zustand store import would go here
-import { useTaskStore } from "../../store/task";
+// Service
+import { createTask } from "../../services/taskService";
 
 type Inputs = {
   task: string;
@@ -18,23 +19,25 @@ const schema = yup
   .required();
 
 export default function TaskForm() {
-  const { addTask } = useTaskStore();
-
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
+    resetField,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = ({ task }) => addTask(task);
+  const onSubmit: SubmitHandler<Inputs> = ({ task }) => {
+    createTask(task);
+    resetField("task");
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl fullWidth variant="standard">
         <TextField
-          id="outlined-basic"
+          id="task"
           label="New Task "
           variant="outlined"
           margin="normal"

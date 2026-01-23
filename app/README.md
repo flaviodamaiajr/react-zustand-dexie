@@ -76,12 +76,7 @@ Próximo ciclo
 - **axios 1.13.2** - Cliente HTTP para requisições ao servidor
   - Interceptadores para autenticação
   - Tratamento de erros robusto
-
-- **@tanstack/react-query 5.90.20** - Gerenciamento de estado do servidor
-  - Caching inteligente
-  - Sincronização automática
-  - Retry automático em falhas
-
+  
 ## 📁 Estrutura do Projeto
 
 ```
@@ -199,6 +194,7 @@ type Task = {
 Para expandir este projeto:
 
 1. **Backend API** - Criar endpoints para sincronização
+2. **dexie-react-hooks** - Explorar dexie hooks com live query
 2. **PWA** - Configurar aplição para suportar PWA
 
 ## 🔗 Recursos Úteis

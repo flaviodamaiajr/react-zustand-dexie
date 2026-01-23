@@ -1,5 +1,6 @@
 import { taskRepo } from "../db/task.repo";
 import { api } from "../lib/api";
+import { useTaskStore } from "../store/task";
 
 let syncing = false;
 
@@ -16,8 +17,6 @@ export async function syncTasks() {
   try {
     const tasks = await taskRepo.getPendingSync();
 
-    console.log(tasks.length)
-
     if (tasks.length === 0) return;
 
     const payload: CreateTaskPayload[] = tasks.map((task) => ({
@@ -31,6 +30,10 @@ export async function syncTasks() {
     for (const task of tasks) {
       await taskRepo.markAsSynced(task.id);
     }
+
+    const updatedTasks = await taskRepo.getAll();
+    useTaskStore.getState().hydrate(updatedTasks);
+
   } catch (err) {
     console.error("Sync failed", err);
   } finally {

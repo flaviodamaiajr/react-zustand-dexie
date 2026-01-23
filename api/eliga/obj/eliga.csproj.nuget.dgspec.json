@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\e3287\\source\\repos\\eliga\\eliga\\eliga.csproj": {}
+    "\\\\wsl.localhost\\Ubuntu-24.04\\home\\flavio\\www\\studies\\react-zustand-dexie\\api\\eliga\\eliga.csproj": {}
   },
   "projects": {
-    "C:\\Users\\e3287\\source\\repos\\eliga\\eliga\\eliga.csproj": {
+    "\\\\wsl.localhost\\Ubuntu-24.04\\home\\flavio\\www\\studies\\react-zustand-dexie\\api\\eliga\\eliga.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\e3287\\source\\repos\\eliga\\eliga\\eliga.csproj",
+        "projectUniqueName": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\flavio\\www\\studies\\react-zustand-dexie\\api\\eliga\\eliga.csproj",
         "projectName": "eliga",
-        "projectPath": "C:\\Users\\e3287\\source\\repos\\eliga\\eliga\\eliga.csproj",
+        "projectPath": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\flavio\\www\\studies\\react-zustand-dexie\\api\\eliga\\eliga.csproj",
         "packagesPath": "C:\\Users\\e3287\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\e3287\\source\\repos\\eliga\\eliga\\obj\\",
+        "outputPath": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\flavio\\www\\studies\\react-zustand-dexie\\api\\eliga\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

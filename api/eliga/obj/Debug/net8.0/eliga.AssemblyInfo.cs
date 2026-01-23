@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Flávio Antônio da Maia Júnior")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da02bb01e8c97dc526e2063f975b824dd7c1e992")]
 [assembly: System.Reflection.AssemblyProductAttribute("eliga")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eliga")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

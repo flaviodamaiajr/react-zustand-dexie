@@ -18,7 +18,6 @@ function App() {
 
   useEffect(() => {
     listTasks();
-
     startSyncScheduler();
 
     return () => {
@@ -33,13 +32,12 @@ function App() {
         <Card>
           <CardContent>
             <Typography variant="h5" component="div" gutterBottom>
-              Task Manager - {isOnline ? "Online" : "Offline"}
+              Task Manager - {isOnline ? "Online " : "Offline"}
             </Typography>
             <TaskForm />
             <Items />
           </CardContent>
         </Card>
-
         <Footer />
       </Grid>
       <Grid size={{ md: 4 }} />

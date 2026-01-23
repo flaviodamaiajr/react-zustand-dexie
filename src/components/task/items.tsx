@@ -1,15 +1,22 @@
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
-import Divider from "@mui/material/Divider";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+  Divider,
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import { useTaskStore } from "../../store/task";
-import Counter from "./counter";
+import {
+  updateTask as updateTaskService,
+  removeTask as removeTaskService,
+} from "../../services/taskService";
+import Counter from "../../components/task/counter";
 
 export default function Items() {
-  const { tasks, removeTask, editTask } = useTaskStore();
+  const tasks = useTaskStore((state) => state.tasks);
 
   const totalTasks = tasks.length;
   const hasTasks = totalTasks > 0;
@@ -19,27 +26,28 @@ export default function Items() {
       <List>
         {hasTasks ? (
           tasks.map((task) => (
-            <>
+            <div key={task.id}>
               <ListItem
-                key={task.id}
                 secondaryAction={
                   <div style={{ display: "flex", gap: "10px" }}>
                     <IconButton
                       edge="end"
                       aria-label="edit"
-                      onClick={() =>
-                        editTask(
-                          task.id,
-                          prompt("Edit your task:", task.text) || task.text,
-                        )
-                      }
+                      onClick={() => {
+                        const text = prompt("Edit your task:", task.text);
+
+                        if (text && text !== task.text) {
+                          updateTaskService(task.id, { text });
+                        }
+                      }}
                     >
                       <EditIcon />
                     </IconButton>
+
                     <IconButton
                       edge="end"
                       aria-label="delete"
-                      onClick={() => removeTask(task.id)}
+                      onClick={() => removeTaskService(task.id)}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -48,11 +56,12 @@ export default function Items() {
               >
                 <ListItemText
                   primary={task.text}
-                  secondary={!task.wasSync ? "Not syncronized" : "Syncronized"} // use it for show status (sync or not).
+                  secondary={task.wasSync ? "Synchronized" : "Not synchronized"}
                 />
               </ListItem>
+
               {totalTasks > 1 && <Divider />}
-            </>
+            </div>
           ))
         ) : (
           <ListItem>
@@ -60,6 +69,7 @@ export default function Items() {
           </ListItem>
         )}
       </List>
+
       {hasTasks && <Counter />}
     </>
   );

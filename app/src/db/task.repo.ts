@@ -3,7 +3,7 @@ import { Status } from "../enums/status";
 
 export const taskRepo = {
   save(task: TaskRecord) {
-    return db.tasks.put(task);
+    return db.tasks.add(task);
   },
   getAll(): Promise<TaskRecord[]> {
     return db.tasks.where("isDeleted").equals(Status.NO).toArray();

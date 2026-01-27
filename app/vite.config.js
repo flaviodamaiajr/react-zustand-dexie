@@ -4,12 +4,18 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // base: "/app/",
   server: {
     host: true,
     port: 5173,
+    hmr: {
+      protocol: "ws",
+      host: "localhost",
+      port: 5173,
+    },
   },
   preview: {
-    host: true, // 🔥 OBRIGATÓRIO
+    host: true, // OBRIGATÓRIO
     port: 4173, // porta padrão do preview
     strictPort: true,
   },
@@ -21,6 +27,9 @@ export default defineConfig({
     }),
     VitePWA({
       registerType: "autoUpdate",
+      devOptions: {
+        enabled: false,
+      },
       includeAssets: ["favicon.svg", "robots.txt"],
       manifest: {
         name: "Task Manager",
@@ -29,7 +38,8 @@ export default defineConfig({
         theme_color: "#0f172a",
         background_color: "#0f172a",
         display: "standalone",
-        start_url: "/",
+        // scope: "/app/",
+        // start_url: "/app",
         icons: [
           {
             src: "/pwa-192x192.png",

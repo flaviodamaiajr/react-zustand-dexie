@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import TaskForm from "./components/task";
+import { useEffect, useState } from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
@@ -12,8 +13,11 @@ import {
   stopSyncScheduler,
 } from "./services/syncScheduler";
 import { Footer } from "./components/footer";
+import TaskForm from "./components/task";
+import { Signature } from "./components/signature";
 
 function App() {
+  const [tabValue, setTabValue] = useState(0);
   const isOnline = useNetwork();
 
   useEffect(() => {
@@ -32,10 +36,25 @@ function App() {
         <Card>
           <CardContent>
             <Typography variant="h5" component="div" gutterBottom>
-              Task Manager - {isOnline ? "Online " : "Offline"}
+              Task Manager - {isOnline ? "Online" : "Offline"}
             </Typography>
-            <TaskForm />
-            <Items />
+            <Tabs
+              value={tabValue}
+              onChange={(e, newValue) => setTabValue(newValue)}
+              aria-label="main tabs"
+            >
+              <Tab label="Task Manager" />
+              <Tab label="Signature" />
+            </Tabs>
+
+            {tabValue === 0 && (
+              <>
+                <TaskForm />
+                <Items />
+              </>
+            )}
+
+            {tabValue === 1 && <Signature />}
           </CardContent>
         </Card>
         <Footer />
